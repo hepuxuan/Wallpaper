@@ -16,29 +16,34 @@
   "license": "MIT",
   "config": {
     "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "wallpaper"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "zip"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
+        ]
+      },
+      "electronPackagerConfig": {
+        "packageManager": "yarn"
+      },
+      "electronWinstallerConfig": {
+        "name": "dynamic_wallpaper"
+      },
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "github_repository": {
+        "owner": "",
+        "name": ""
+      },
+      "windowsStoreConfig": {
+        "packageName": "",
+        "name": "dynamicwallpaper"
+      }
     }
   },
   "dependencies": {
@@ -46,11 +51,7 @@
     "electron-squirrel-startup": "^1.0.0"
   },
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.22",
-    "@electron-forge/maker-deb": "^6.0.0-beta.22",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.22",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.22",
-    "@electron-forge/maker-zip": "^6.0.0-beta.22",
+    "electron-forge": "^5.2.2",
     "electron": "2.0.4"
   }
 }
