@@ -27,6 +27,24 @@ const createWindow = () => {
   const appIcon = new Tray(path.join(__dirname, 'icon.png'));
 
   const contextMenu = Menu.buildFromTemplate([
+    {
+      label: '花瓣',
+      click: () => {
+        mainWindow.loadURL(`file://${__dirname}/wp1/index.html`);
+      },
+    },
+    {
+      label: '田馥甄',
+      click: () => {
+        mainWindow.loadURL(`file://${__dirname}/wp2/index.html`);
+      },
+    },
+    {
+      label: '芽衣',
+      click: () => {
+        mainWindow.loadURL(`file://${__dirname}/wp3/index.html`);
+      },
+    },
      {
       label: 'Quit',
       click: () => {

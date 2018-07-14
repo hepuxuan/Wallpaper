@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* body {
+            background: linear-gradient(to bottom right, #3949AB, #000);
+        } */
+
+        /* body {
+            background-image: url(bg.jpg);
+            background-repeat: no-repeat;
+            background-position: center bottom;
+        } */
+
+        .time {
+            font-size: 80px;
+            text-shadow: 2px 2px #212121;
+            color: #fff;
+            font-style: italic;
+            z-index: 1;
+            position: fixed;
+            top: 5%;
+            left: 5%;
+        }
+
+        .time span {
+            padding: 0 18px 0 18px;
+        }
+
+        .second {
+            font-size: 50%;
+        }
+
+        .date {
+            font-size: 24px;
+        }
+
+        video {
+            position: fixed;
+            right: -10px;
+            left: -10px;
+            bottom: -10px;
+            top: -10px;
+            min-width: calc(100% + 20px);
+            min-height: calc(100% + 20px);
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <video autoplay loop>
+        <source src="bg.mp4" type="video/mp4">
+    </video>
+    <div id="time" class="time"></div>
+    <!-- <canvas id="can"></canvas>
+        <script src="./chicago.js"></script> -->
+    <script>
+        var moment = require('moment');
+
+        var hourDom = document.getElementById('time');
+
+        function formatNumber(number) {
+            return ('0' + number).slice(-2);
+        }
+
+        window.setInterval(function () {
+            var now = moment();
+            var minute = now.get('minute');
+            var hour = now.get('hour');
+            var second = now.get('second');
+            var date = now.format('LL');
+
+            hourDom.innerHTML = '<div><span class="hour">' + formatNumber(hour) +
+                '</span>:<span class="minute">' + formatNumber(minute) +
+                '</span><span class="second">' + formatNumber(second) + '</span></div>' + '<div class="date"><span>' + date + '</span></div>';
+        }, 1000);
+    </script>
+</body>
+
+</html>

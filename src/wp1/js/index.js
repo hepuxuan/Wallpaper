@@ -1,4 +1,5 @@
-// Utilities
+const moment = require('moment');
+
 var Vector3 = {};
 var Matrix44 = {};
 Vector3.create = function (x, y, z) {
@@ -819,11 +820,12 @@ function formatNumber(number) {
 }
 
 window.setInterval(function () {
-    var now = new Date();
-    var minute = now.getMinutes();
-    var hour = now.getHours();
-    var second = now.getSeconds();
-    hourDom.innerHTML = '<span class="hour">' + formatNumber(hour) +
-        '</span>:<span class="minute">' + formatNumber(minute) +
-        '</span><span class="second">' + formatNumber(second) + '</span>';
+    var now = moment();
+    var minute = now.get('minute');
+    var hour = now.get('hour');
+    var second = now.get('second');
+    var date = now.format('LL');
+    hourDom.innerHTML = '<div><span class="hour">' + formatNumber(hour) +
+                '</span>:<span class="minute">' + formatNumber(minute) +
+                '</span><span class="second">' + formatNumber(second) + '</span></div>' + '<div class="date"><span>' + date + '</span></div>';
 }, 1000);

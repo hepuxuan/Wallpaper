@@ -54,6 +54,11 @@ void SetWallPaper(const FunctionCallbackInfo<Value> &args)
 
   SetParent(hwnd, GetWorkerW());
 
+  HWND hTaskBar;
+
+  hTaskBar = FindWindow("Shell_TrayWnd", 0 );
+  SetLayeredWindowAttributes(hTaskBar, 0, 200 , LWA_ALPHA);
+
   args.GetReturnValue().Set(String::NewFromUtf8(isolate, "done"));
 }
 
