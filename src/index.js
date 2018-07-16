@@ -16,18 +16,18 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
+let appIcon;
 
 const createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow();
 
   // and load the index.html of the app.
-  mainWindow.loadURL(`file://${__dirname}/wp1/index.html`);
+  mainWindow.loadURL(`file://${__dirname}/wp4/index.html`);
 
-  const appIcon = new Tray(path.join(__dirname, 'icon.png'));
+  appIcon = new Tray(path.join(__dirname, 'icon.png'));
 
-  const contextMenu = Menu.buildFromTemplate([
-    {
+  const contextMenu = Menu.buildFromTemplate([{
       label: '花瓣',
       click: () => {
         mainWindow.loadURL(`file://${__dirname}/wp1/index.html`);
@@ -45,13 +45,19 @@ const createWindow = () => {
         mainWindow.loadURL(`file://${__dirname}/wp3/index.html`);
       },
     },
-     {
+    {
+      label: 'lakeside',
+      click: () => {
+        mainWindow.loadURL(`file://${__dirname}/wp4/index.html`);
+      },
+    },
+    {
       label: 'Quit',
       click: () => {
         app.isQuiting = true;
         app.quit();
       },
-    },
+    }
   ]);
 
   appIcon.setContextMenu(contextMenu);
@@ -99,21 +105,21 @@ const autoLauncher = new AutoLaunch({
 });
 
 autoLauncher.isEnabled()
-    .then((isEnabled) => {
-      if (arg) {
-        if (isEnabled) {
-          return;
-        }
-        console.log('enable');
-        autoLauncher.enable();
-      } else {
-        if (!isEnabled) {
-          return;
-        }
-        console.log('disable');
-        autoLauncher.disable();
+  .then((isEnabled) => {
+    if (arg) {
+      if (isEnabled) {
+        return;
       }
-    }).catch(() => {});
+      console.log('enable');
+      autoLauncher.enable();
+    } else {
+      if (!isEnabled) {
+        return;
+      }
+      console.log('disable');
+      autoLauncher.disable();
+    }
+  }).catch(() => {});
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
